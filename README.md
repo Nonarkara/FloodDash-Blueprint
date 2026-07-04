@@ -82,6 +82,19 @@ one map, no fabricated forecasts, every number traceable to a real reading.
 | 6 | [`docs/06-build-your-own-roadmap.md`](docs/06-build-your-own-roadmap.md) | แผนสร้างทีละเฟส ไม่ผูกกับภาษาหรือสแตกใดสแตกหนึ่ง | A phased, stack-agnostic roadmap to build your own |
 | 7 | [`docs/07-honest-limitations.md`](docs/07-honest-limitations.md) | ข้อจำกัดที่ต้องพูดตรง ๆ และหลักจริยธรรม | Honest limitations and the ethical framing |
 
+**อยากได้รายละเอียดมากกว่านี้?** ดู **[the deep-dive reference](docs/deep-dive/README.md)**
+— เอกสารสังเคราะห์ต้นฉบับสองภาษาแปดฉบับ ครอบคลุมบริบทน้ำท่วมไทยเชิงลึก
+แหล่งข้อมูลระดับ endpoint แบบจำลองอุทกวิทยา แมชชีนเลิร์นนิง กรอบการให้คะแนน
+ความเสี่ยง ทะเบียนเครื่องมือโอเพนซอร์ส ระบบแจ้งเตือน และเศรษฐศาสตร์แผนงาน —
+รวมเนื้อหาความรู้เกือบทั้งหมดที่ใช้สร้าง FloodDash จริง
+
+**Want more depth?** See **[the deep-dive reference](docs/deep-dive/README.md)**
+— eight original bilingual synthesis documents covering Thailand's flood
+context in forensic detail, endpoint-level data sources, hydrological
+models, machine learning, risk-scoring frameworks, the open-source tool
+registry, alert systems, and roadmap economics — nearly everything learned
+building the real FloodDash, condensed and cited.
+
 ## What this repo is **not** / สิ่งที่เอกสารนี้ **ไม่ใช่**
 
 - **ไม่ใช่ซอร์สโค้ด** — ไม่มีไฟล์โปรแกรมสักไฟล์เดียวในนี้ มีแต่แนวคิด สูตร และ
