@@ -1,1 +1,5 @@
 .DS_Store
+
+# Agent context — local only
+CLAUDE.md
+.claude/
