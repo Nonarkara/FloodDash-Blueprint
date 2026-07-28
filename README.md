@@ -48,7 +48,7 @@ If you build your own version — a province, a municipality, a university, a
 company, or just someone who wants to help the country — tell me. I want to
 see it work.
 
-**— Dr Non Arkaraprasertkul** (ดร. นนท์ อัครประสาทกุล), Senior Expert, Smart
+**— Dr Non Arkaraprasertkul** (ดร.นน อัครประเสริฐกุล), Senior Expert, Smart
 City Promotion Department, Digital Economy Promotion Agency (depa), Kingdom
 of Thailand.
 
@@ -120,7 +120,7 @@ Thailand Office, and not distributed here.)
 
 ## Built by / ผู้จัดทำ
 
-**Dr Non Arkaraprasertkul (ดร. นนท์ อัครประสาทกุล)** — Senior Expert, Smart
+**Dr Non Arkaraprasertkul (ดร.นน อัครประเสริฐกุล)** — Senior Expert, Smart
 City Promotion Department, **Digital Economy Promotion Agency (depa)**,
 Kingdom of Thailand. Produced under the **Smart City Thailand Office**
 (สำนักงานเมืองอัจฉริยะประเทศไทย). Contact: `non.ar@depa.or.th` ·
