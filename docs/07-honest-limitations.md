@@ -1,6 +1,6 @@
 # 7. Honest limitations and the ethical framing / ข้อจำกัดที่ต้องพูดตรง ๆ และกรอบจริยธรรม
 
-[← Roadmap](06-build-your-own-roadmap.md) · [Back to README](../README.md)
+[← Roadmap](06-build-your-own-roadmap.md) · [Next: Lessons from production →](08-lessons-from-production.md)
 
 ---
 
@@ -113,4 +113,4 @@ real data sources, will build real things.** Prove the bet right.
 
 ---
 
-[← Roadmap](06-build-your-own-roadmap.md) · [Back to README](../README.md)
+[← Roadmap](06-build-your-own-roadmap.md) · [Next: Lessons from production →](08-lessons-from-production.md)
