@@ -189,6 +189,10 @@ The reference pattern's alerts are **on-screen**. Pushing warnings onto phones i
 | 5 | [`docs/05-design-language.md`](docs/05-design-language.md) | Permanent TH+EN signage vs toggle-driven content; colour; fixed viewport |
 | 6 | [`docs/06-build-your-own-roadmap.md`](docs/06-build-your-own-roadmap.md) | Phases 0–5, stack-agnostic, with effort notes |
 | 7 | [`docs/07-honest-limitations.md`](docs/07-honest-limitations.md) | What this pattern cannot do, and the ethical floor |
+| 8 | [`docs/08-lessons-from-production.md`](docs/08-lessons-from-production.md) | What broke in weather: tunnel hostnames (`api-` vs `api2-`), backup paths, irreplaceable SQLite, Pages proxy, embeddings, one-Mac ops |
+| 9 | [`docs/09-compute-and-data.md`](docs/09-compute-and-data.md) | Compute kit: sizing, cadence, **public URLs with attribution**, schema concepts, named env vars (no values), blank-Mac checklist |
+
+**After the seven core files:** read **8** before you expose a public URL, and **9** before you size a disk or copy an env name. They are the production lessons and the compute kit. They still contain **no secrets** and **no private source**.
 
 Want more depth after that? The **[deep-dive reference](docs/deep-dive/README.md)** is eight original bilingual synthesis documents (Thai flood context, endpoint-level sources, hydrological models, ML, risk-scoring theory, open-source tool registry, alert systems, roadmap economics). It is a cited summary, not a copy of any single source paper.
 
@@ -213,6 +217,7 @@ Two developers, Phases 0–5 in order, is estimated in the roadmap at **roughly 
 2. Fetch → validate (dates, types, sentinels such as `-1`) → insert-or-ignore into a readings table keyed as in [`docs/02-architecture.md`](docs/02-architecture.md) §2.3.
 3. Query “rows now vs five minutes ago.” If that count grows cleanly twice, Phase 0 is done.
 4. Only then clone the adapter pattern for the other pipes you need. Then — and only then — put §4.1 on a map.
+5. Env **names** (never values) and a blank-Mac order of operations: [`docs/09-compute-and-data.md`](docs/09-compute-and-data.md) §9.7–9.8.
 
 ### What you will not find here / สิ่งที่จะไม่พบที่นี่
 
@@ -227,11 +232,11 @@ Two developers, Phases 0–5 in order, is estimated in the roadmap at **roughly 
 
 <p align="center"><b><a href="https://flood.nonarkara.org">flood.nonarkara.org</a></b></p>
 
-**TH.** นั่นคือระบบเฝ้าระวังน้ำท่วมของไทยที่รันบนเครื่องเดียว ณ เวลาที่พิมพ์เขียวนี้เขียน — สร้างจากแนวคิดใน repository นี้ **การใช้งานจริงเป็นส่วนตัว** เปิดลิงก์เพื่อดูว่าวิธีนี้ *หน้าตาเป็นอย่างไรในอากาศจริง* ไม่ใช่เพื่อดาวน์โหลดซอร์ส ไม่ใช่เพื่อขูด API ของเว็บนั้นมาเป็นทางลัดของเฟส 0–5 และไม่ใช่ประกาศเตือนภัยทางการ
+**TH.** นั่นคือระบบเฝ้าระวังน้ำท่วมของไทยที่รันบนเครื่องเดียว ณ เวลาที่พิมพ์เขียวนี้เขียน — สร้างจากแนวคิดใน repository นี้ **การใช้งานจริงเป็นส่วนตัว** เปิดลิงก์เพื่อดูว่าวิธีนี้ *หน้าตาเป็นอย่างไรในอากาศจริง* ไม่ใช่เพื่อดาวน์โหลดซอร์ส ไม่ใช่เพื่อขูด API ของเว็บนั้นมาเป็นทางลัดของเฟส 0–5 ไม่ใช่ API สเตจ และไม่ใช่ประกาศเตือนภัยทางการ อย่าชี้ adapter ของคุณไปที่นั่น
 
-**EN.** That is a real Thai flood-watch system running on one Mac at the time this blueprint was written — built from the ideas in this repository. **The implementation is private.** Use the URL to see what the method *looks like in weather*. Do not use it as a source download, as a scrape target, or as a shortcut around Phases 0–5. It is not an official warning.
+**EN.** That is a real Thai flood-watch system running on one Mac at the time this blueprint was written — built from the ideas in this repository. **The implementation is private.** Use the URL to see what the method *looks like in weather*. Do not use it as a source download, as a scrape target, as a staging API, or as a shortcut around Phases 0–5. It is not an official warning. Do not point your adapters at it.
 
-Reconstruct from `docs/`. Do not reconstruct from the running building.
+Reconstruct from `docs/`. Compute from the public agency URLs in [`docs/09-compute-and-data.md`](docs/09-compute-and-data.md). Do not reconstruct from the running building.
 
 ---
 

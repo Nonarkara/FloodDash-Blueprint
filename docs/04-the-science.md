@@ -16,6 +16,9 @@ appears.** With that established, here is a workable formula shape:
 score = w1·water + w2·rain + w3·forecast + w4·soil_wetness + w5·rise_rate
 ```
 
+Wiring from named public feeds, badges (measured / derived / modelled),
+and a copy-paste schema sketch: [`docs/09-compute-and-data.md`](09-compute-and-data.md) §9.4–9.5.
+
 - **`water`** — derived from the most severe live station reading in the
   province (e.g. a categorical situation level, or % of bank capacity).
   This should dominate the weighting: overflow is the rare, high-

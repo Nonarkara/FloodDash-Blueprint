@@ -169,6 +169,12 @@ and every number on screen will be one your own team can explain.
 ของระยะเวลาจัดซื้อระบบเชิงพาณิชย์ — และตัวเลขทุกตัวบนหน้าจอจะเป็นสิ่งที่ทีม
 ของคุณเองอธิบายได้
 
+When Phase 5 starts to hurt, read **[lessons from production](08-lessons-from-production.md)**
+(tunnel hostnames, backups, irreplaceable SQLite, Pages proxy) and the
+**[compute kit](09-compute-and-data.md)** (public URLs, schema, blank-Mac
+checklist). Do not scrape [flood.nonarkara.org](https://flood.nonarkara.org)
+to skip those files.
+
 ---
 
 [← Design Language](05-design-language.md) · [Next: Honest Limitations →](07-honest-limitations.md)

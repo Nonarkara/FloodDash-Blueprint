@@ -16,23 +16,25 @@ live. None require a paid subscription. Some require free registration
 
 | Source / แหล่ง | Agency | Access | Cadence | What it gives / ให้ข้อมูลอะไร |
 |---|---|---|---|---|
-| **ThaiWater v3 API** | HII — Hydro-Informatics Institute (สสน.) | `api-v3.thaiwater.net/api/v1/thaiwater30/` — no key on `/public/` and `/analyst/` endpoints | 10–15 min | Water level (m MSL), % bank capacity, HII situation level (1 critically-low … 5 overflowing), across hundreds of telemetry stations nationwide |
-| **ThaiWater rain** | Multi-agency, aggregated via HII | same base, `/public/rain_24h` | 10–15 min | 1-hour and 24-hour rainfall accumulation, thousands of gauges |
-| **ThaiWater dam feed** | HII / EGAT / RID | same base, `/analyst/dam` | hourly–daily | Major dam storage (MCM), inflow, release. **Gotcha:** the feed mixes recent and years-old stale rows — filter by observation date before trusting a row |
-| **RID reservoir API** | Royal Irrigation Department (กรมชลประทาน) | `app.rid.go.th/reservoir/api/reservoir/public` — no key; date-specific variant at `/public/{YYYY-MM-DD}` | daily | Medium reservoir storage %, volume (MCM), for several hundred reservoirs nationwide |
-| **Air4Thai** | Pollution Control Department (กรมควบคุมมลพิษ) | `air4thai.pcd.go.th/services/getNewAQI_JSON.php` — **must use HTTPS**; some HTTP clients reject its TLS chain, curl usually works | hourly | AQI and PM2.5 at ground stations nationwide. **Gotcha:** missing values are sent as `-1`, not `null` — filter them |
-| **TMD observations & NWP** | Thai Meteorological Department | `data.tmd.go.th/api/` (free registration for a `uid`/`ukey` pair); higher-resolution NWP forecast API separately registered | hourly (obs), 3-hourly (3 km NWP forecast) | Ground weather observations and short-range numerical weather prediction — the highest-quality public rain forecast for Thailand |
-| **GISTDA flood/satellite** | Geo-Informatics and Space Technology Development Agency | WMS/WMTS/TMS map services + GeoJSON feature endpoints (API key embedded in their own public dashboard) | 1–7 day aggregation windows | SAR-derived flood-extent layers that see through monsoon cloud cover |
+| **ThaiWater v3 API** | HII — Hydro-Informatics Institute (สสน.) | `https://api-v3.thaiwater.net/api/v1/thaiwater30/public/waterlevel` — no key on `/public/` and `/analyst/` routes | 10–15 min | Water level (m MSL), % bank capacity, HII situation level (1 critically-low … 5 overflowing), across hundreds of telemetry stations nationwide. **Measured.** |
+| **ThaiWater rain** | Multi-agency, aggregated via HII | `https://api-v3.thaiwater.net/api/v1/thaiwater30/public/rain_24h` | 10–15 min | 1-hour and 24-hour rainfall accumulation, thousands of gauges. **Measured.** |
+| **ThaiWater dam feed** | HII / EGAT / RID | `https://api-v3.thaiwater.net/api/v1/thaiwater30/analyst/dam` | hourly–daily | Major dam storage (MCM), inflow, release. **Gotcha:** the feed mixes recent and years-old stale rows — filter by observation date before trusting a row. **Measured.** |
+| **RID reservoir API** | Royal Irrigation Department (กรมชลประทาน) | `https://app.rid.go.th/reservoir/api/reservoir/public` — no key; date-specific variant at `/public/{YYYY-MM-DD}` | daily | Medium reservoir storage %, volume (MCM), for several hundred reservoirs nationwide. **Measured.** |
+| **DWR early warning** | Department of Water Resources (กรมทรัพยากรน้ำ) | portal `https://ews.dwr.go.th` · stations `https://ews.dwr.go.th/ews/web-service/stn` | ~15 min | Community flash-flood / landslide stations with official alert status and, where reported, soil moisture. **Measured.** Independent of HII; especially useful in steep headwaters. |
+| **Air4Thai** | Pollution Control Department (กรมควบคุมมลพิษ) | `https://air4thai.pcd.go.th/services/getNewAQI_JSON.php` — **must use HTTPS**; some HTTP clients reject its TLS chain, curl usually works | hourly | AQI and PM2.5 at ground stations nationwide. **Gotcha:** missing values are sent as `-1`, not `null` — filter them. **Measured.** |
+| **TMD observations & NWP** | Thai Meteorological Department | portal `https://data.tmd.go.th/api/` · register `https://data.tmd.go.th/api/registerPre.php` (free `uid`/`ukey`); higher-resolution NWP separately registered | hourly (obs), 3-hourly (3 km NWP forecast) | Ground observations (**measured**) and short-range NWP (**modelled**) — the highest-quality public rain forecast for Thailand |
+| **GISTDA flood/satellite** | Geo-Informatics and Space Technology Development Agency | flood map `https://flood.gistda.or.th` · Sphere `https://sphere.gistda.or.th` (WMS/WMTS/TMS + GeoJSON; some services need a free key you register yourself) | 1–7 day aggregation windows | SAR-derived flood-extent layers that see through monsoon cloud cover. **Modelled/derived**, not a river gauge. |
 
 ## 3.2 International / free-forever sources / แหล่งข้อมูลนานาชาติ
 
 | Source | Access | Cadence | What it gives |
 |---|---|---|---|
-| **Open-Meteo weather forecast** | `api.open-meteo.com/v1/forecast` — no key, generous free tier, supports **many coordinates in a single request** | hourly | High-quality global weather forecast; can batch every province centroid in one call |
-| **GloFAS river discharge (via Open-Meteo)** | `flood-api.open-meteo.com/v1/flood` — no key, wraps Copernicus GloFAS v4 | daily, 46-day forecast horizon | River discharge (m³/s) at 5 km global grid resolution, with ensemble forecast. **Gotcha:** at 5 km resolution, a naive coordinate can land on a dry tributary instead of the main channel — scan a small grid around your target reach and keep the cell with maximum discharge |
-| **RainViewer radar** | `api.rainviewer.com/public/weather-maps.json` + tile server | ~10 min | Global precipitation radar composite, past frames + short nowcast, renderable as animated map tiles. **Gotcha:** free tiles only carry real data to about zoom level 7; beyond that the tile is a placeholder |
-| **NASA GIBS** | WMTS tile endpoints, no key | daily | MODIS/VIIRS true-colour satellite imagery as slippy-map tiles |
-| **NOAA ONI (Oceanic Niño Index)** | `www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt` — plain text, no key | monthly (revises) | The standard El Niño / La Niña classification — a genuine seasonal risk *modulator* (not a predictor) for Thailand's wet-season rainfall |
+| **Open-Meteo weather forecast** | `https://api.open-meteo.com/v1/forecast` — no key, generous free tier, supports **many coordinates in a single request**. Docs: `https://open-meteo.com/en/docs`. Credit Open-Meteo. | hourly | High-quality global weather forecast; can batch every province centroid in one call. **Modelled.** |
+| **GloFAS river discharge (via Open-Meteo)** | `https://flood-api.open-meteo.com/v1/flood` — no key, wraps Copernicus GloFAS v4. Docs: `https://open-meteo.com/en/docs/flood-api`. Credit Copernicus EMS + Open-Meteo. | daily, 46-day forecast horizon | River discharge (m³/s) at 5 km global grid resolution, with ensemble forecast. **Modelled.** **Gotcha:** at 5 km resolution, a naive coordinate can land on a dry tributary instead of the main channel — scan a small grid around your target reach and keep the cell with maximum discharge |
+| **RainViewer radar** | `https://api.rainviewer.com/public/weather-maps.json` + tile server | ~10 min | Global precipitation radar composite, past frames + short nowcast, renderable as animated map tiles. **Gotcha:** free tiles only carry real data to about zoom level 7; beyond that the tile is a placeholder |
+| **NASA GIBS** | WMTS, no key. Docs: `https://nasa-gibs.github.io/gibs-api-docs/` · base `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/` | daily | MODIS/VIIRS true-colour satellite imagery as slippy-map tiles. **Observed imagery**, not a gauge. Credit NASA EOSDIS. |
+| **NOAA ONI (Oceanic Niño Index)** | `https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt` — plain text, no key | monthly (revises) | The standard El Niño / La Niña classification — a genuine seasonal risk *modulator* (not a predictor) for Thailand's wet-season rainfall. **Seasonal prior.** |
+| **CHIRPS climatology (optional)** | UCSB Climate Hazards Center — `https://www.chc.ucsb.edu/data/chirps` | monthly / pentad archive | Gauge-plus-satellite blended rainfall from 1981. Use for baselines, not as a live ThaiWater replacement. **Modelled/blended.** |
 | **News RSS** | Any national or regional news outlet's public RSS feed, keyword-filtered | continuous | Human-language flood reporting as a cross-check against telemetry |
 
 ## 3.3 Field-tested gotchas worth inheriting / ข้อควรระวังที่คุ้มค่าจะรับไว้
@@ -76,6 +78,11 @@ live. None require a paid subscription. Some require free registration
   ไม่ครบ ซึ่งบาง HTTP client (รวมถึง fetch ของ Node บางเวอร์ชัน) ปฏิเสธตรง ๆ
   ในขณะที่เครื่องมือระบบอย่าง `curl` แก้ปัญหาได้ผ่าน trust store ของ OS
   ควรมีทางดึงข้อมูลสำรอง
+
+How these feeds become a watch score, cascade, and soil index — and a
+blank-machine checklist — is in [`docs/09-compute-and-data.md`](09-compute-and-data.md).
+Do not use [flood.nonarkara.org](https://flood.nonarkara.org) as an
+upstream; it is illustration only.
 
 ---
 
