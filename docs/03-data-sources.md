@@ -23,7 +23,12 @@ live. None require a paid subscription. Some require free registration
 | **DWR early warning** | Department of Water Resources (กรมทรัพยากรน้ำ) | portal `https://ews.dwr.go.th` · stations `https://ews.dwr.go.th/ews/web-service/stn` | ~15 min | Community flash-flood / landslide stations with official alert status and, where reported, soil moisture. **Measured.** Independent of HII; especially useful in steep headwaters. |
 | **Air4Thai** | Pollution Control Department (กรมควบคุมมลพิษ) | `https://air4thai.pcd.go.th/services/getNewAQI_JSON.php` — **must use HTTPS**; some HTTP clients reject its TLS chain, curl usually works | hourly | AQI and PM2.5 at ground stations nationwide. **Gotcha:** missing values are sent as `-1`, not `null` — filter them. **Measured.** |
 | **TMD observations & NWP** | Thai Meteorological Department | portal `https://data.tmd.go.th/api/` · register `https://data.tmd.go.th/api/registerPre.php` (free `uid`/`ukey`); higher-resolution NWP separately registered | hourly (obs), 3-hourly (3 km NWP forecast) | Ground observations (**measured**) and short-range NWP (**modelled**) — the highest-quality public rain forecast for Thailand |
-| **GISTDA flood/satellite** | Geo-Informatics and Space Technology Development Agency | flood map `https://flood.gistda.or.th` · Sphere `https://sphere.gistda.or.th` (WMS/WMTS/TMS + GeoJSON; some services need a free key you register yourself) | 1–7 day aggregation windows | SAR-derived flood-extent layers that see through monsoon cloud cover. **Modelled/derived**, not a river gauge. |
+| **GISTDA flood map / Sphere** | GISTDA (สำนักงานพัฒนาเทคโนโลยีอวกาศและภูมิสารสนเทศ) | flood map `https://flood.gistda.or.th` · Sphere `https://sphere.gistda.or.th` | 1–7 day windows | Related public portals. Prefer the Disaster Platform row below for documented EO APIs. |
+| **GISTDA Disaster Platform** | GISTDA — credit **GISTDA** on every layer | portal `https://disaster.gistda.or.th` · Open API Swagger `https://disaster.gistda.or.th/services/open-api` · gateway `https://api-gateway.gistda.or.th/api/2.0/resources` (**your** API key) | Flood WMS/WMTS/TMS 1/3/7/30-day + flood-freq; fire VIIRS/burn; drought DRI/NDWI/SMAP 7-day | Named public Thai EO source. Satellite-derived, not a river gauge — see paragraph below. |
+
+**GISTDA Disaster Platform / แพลตฟอร์มภัยพิบัติ GISTDA.** **TH.** แหล่งสำรวจโลกสาธารณะของไทยที่ตั้งชื่อได้: พอร์ทัล [`disaster.gistda.or.th`](https://disaster.gistda.or.th) เอกสาร Open API (Swagger) [`/services/open-api`](https://disaster.gistda.or.th/services/open-api) และเกตเวย์ [`api-gateway.gistda.or.th/api/2.0/resources`](https://api-gateway.gistda.or.th/api/2.0/resources) (ต้องใช้ API key ที่ **คุณ** ลงทะเบียนกับ GISTDA — ห้ามใส่ใน git) มีไทล์น้ำท่วม WMS/WMTS/TMS หน้าต่าง 1/3/7/30 วัน และ flood-freq ไฟ VIIRS/burn และภัยแล้ง DRI/NDWI/SMAP 7 วัน **อ้างอิง GISTDA ทุกชั้น** ผลิตภัณฑ์น้ำท่วมจากดาวเทียมเป็นค่าที่สังเกตจากอวกาศ ไม่ใช่มาตรวัดลำน้ำ — ติดป้ายตรง ๆ ว่าการตรวจจับอัตโนมัติ **ยังไม่ได้รับการยืนยัน** (UI ของ GISTDA เองก็บอกแบบนั้น) ดึงจากเอกสารที่เปิดเผย ห้ามขูด [flood.nonarkara.org](https://flood.nonarkara.org) และห้ามใช้พร็อกซีเซสชัน `/app-api` ที่ไม่มีเอกสาร
+
+**EN.** A named public Thai Earth-observation source: portal [`disaster.gistda.or.th`](https://disaster.gistda.or.th), Open API Swagger [`/services/open-api`](https://disaster.gistda.or.th/services/open-api), gateway [`api-gateway.gistda.or.th/api/2.0/resources`](https://api-gateway.gistda.or.th/api/2.0/resources) (**your** GISTDA-registered API key; never commit it). Flood tiles over WMS/WMTS/TMS for 1/3/7/30-day windows plus flood-freq; fire VIIRS/burn; drought DRI/NDWI/SMAP 7-day. **Attribute GISTDA on every layer.** Satellite flood products are space-based observations, not river gauges — label automated detections **not yet verified**, as GISTDA’s own UI does. Use the documented Open API. Do not scrape [flood.nonarkara.org](https://flood.nonarkara.org) and do not call undocumented `/app-api` session proxies.
 
 ## 3.2 International / free-forever sources / แหล่งข้อมูลนานาชาติ
 
@@ -60,6 +65,13 @@ live. None require a paid subscription. Some require free registration
   incomplete certificate chain that some HTTP clients (including some
   versions of Node's native fetch) reject outright, while system tools like
   `curl` resolve it fine via the OS trust store. Have a fallback fetch path.
+- **Satellite flood extent is not a verified gauge.** GISTDA Disaster
+  Platform products are Earth-observation layers. Automated flood
+  detections should wear a badge that they are **not yet verified** until
+  the agency (or your own review) says otherwise. Fetch them from the
+  documented portal, Swagger, and gateway above — never from an
+  undocumented `/app-api` session proxy, and never from
+  [flood.nonarkara.org](https://flood.nonarkara.org).
 
 **TH.**
 
@@ -78,6 +90,11 @@ live. None require a paid subscription. Some require free registration
   ไม่ครบ ซึ่งบาง HTTP client (รวมถึง fetch ของ Node บางเวอร์ชัน) ปฏิเสธตรง ๆ
   ในขณะที่เครื่องมือระบบอย่าง `curl` แก้ปัญหาได้ผ่าน trust store ของ OS
   ควรมีทางดึงข้อมูลสำรอง
+- **ขอบเขตน้ำท่วมจากดาวเทียมไม่ใช่มาตรวัดที่ตรวจแล้ว** ผลิตภัณฑ์แพลตฟอร์มภัยพิบัติ
+  ของ GISTDA เป็นชั้นสำรวจโลก การตรวจจับน้ำท่วมอัตโนมัติควรติดป้ายว่า
+  **ยังไม่ได้รับการยืนยัน** จนกว่าหน่วยงาน (หรือการตรวจของคุณเอง) จะบอกเป็นอย่างอื่น
+  ดึงจากพอร์ทัล Swagger และเกตเวย์ที่ระบุไว้ — ห้ามขูดพร็อกซีเซสชัน `/app-api`
+  ที่ไม่มีเอกสาร และห้ามขูด [flood.nonarkara.org](https://flood.nonarkara.org)
 
 How these feeds become a watch score, cascade, and soil index — and a
 blank-machine checklist — is in [`docs/09-compute-and-data.md`](09-compute-and-data.md).

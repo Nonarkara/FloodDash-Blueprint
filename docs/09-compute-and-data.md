@@ -60,7 +60,7 @@ publishes — you will not get fresher truth, only a ban.
 | NASA GIBS | daily | tiles in the browser, not your DB |
 | NOAA ONI | monthly | weekly is plenty |
 | News RSS | continuous | 15–30 min, keyword filter |
-| GISTDA flood extent | 1–7 day windows | daily; map layer, not a gauge |
+| GISTDA Disaster Platform tiles | flood 1/3/7/30-day + flood-freq; fire; drought 7-day | daily; map layer, not a gauge; badge unverified auto-flood |
 
 Health endpoint: JSON with `ok`, clock time, and **last success per
 source**. Cadence ≠ latency — show data age in the UI.
@@ -93,11 +93,28 @@ agency portal, not from someone else's dashboard.
 | **DWR early warning** | Department of Water Resources (กรมทรัพยากรน้ำ) | portal `https://ews.dwr.go.th` · stations `https://ews.dwr.go.th/ews/web-service/stn` | **Measured** (incl. soil / flash-flood status) |
 | **Air4Thai** | Pollution Control Department (กรมควบคุมมลพิษ) | `https://air4thai.pcd.go.th/services/getNewAQI_JSON.php` (HTTPS; filter `-1`) | **Measured** |
 | **TMD observations & NWP** | Thai Meteorological Department (กรมอุตุฯ) | portal `https://data.tmd.go.th/api/` · register `https://data.tmd.go.th/api/registerPre.php` | Obs = **measured**; NWP = **modelled** |
-| **GISTDA flood / Sphere** | GISTDA | flood map `https://flood.gistda.or.th` · Sphere `https://sphere.gistda.or.th` (some services need a **free** key you register) | Extent = **modelled/derived** from SAR |
+| **GISTDA flood map / Sphere** | GISTDA | flood map `https://flood.gistda.or.th` · Sphere `https://sphere.gistda.or.th` | Related portals; see Disaster Platform below for documented EO APIs |
+| **GISTDA Disaster Platform** | **GISTDA** (สำนักงานพัฒนาเทคโนโลยีอวกาศและภูมิสารสนเทศ) | portal `https://disaster.gistda.or.th` · Swagger `https://disaster.gistda.or.th/services/open-api` · gateway `https://api-gateway.gistda.or.th/api/2.0/resources` (**your** key) | Flood WMS/WMTS/TMS 1/3/7/30-day + flood-freq; fire VIIRS/burn; drought DRI/NDWI/SMAP 7-day. **Satellite-derived** — label unverified auto-flood honestly |
 
 ThaiWater public/analyst routes as catalogued in [§3.1](03-data-sources.md)
-do not require a key. TMD and some GISTDA services require **your** free
-registration — put those ids in env, never in git.
+do not require a key. TMD and GISTDA Disaster Platform / Sphere services
+that need a key use **your** free registration — put those ids in env,
+never in git.
+
+**GISTDA Disaster Platform.** Attribution: **GISTDA**. Portal
+`https://disaster.gistda.or.th`, Swagger
+`https://disaster.gistda.or.th/services/open-api`, gateway
+`https://api-gateway.gistda.or.th/api/2.0/resources`. Flood 1/3/7/30-day
+and flood-freq tiles (WMS/WMTS/TMS), fire VIIRS/burn, drought
+DRI/NDWI/SMAP 7-day. Satellite flood is **not** a verified gauge; badge
+automated extent as not-yet-verified. Do not scrape
+[flood.nonarkara.org](https://flood.nonarkara.org) or undocumented
+`/app-api` session proxies.
+
+**แพลตฟอร์มภัยพิบัติ GISTDA.** อ้างอิง **GISTDA** ทุกชั้น พอร์ทัลและ Open API
+ตามตารางด้านบน น้ำท่วมจากดาวเทียมไม่ใช่มาตรวัดที่ตรวจแล้ว — ติดป้ายว่า
+ยังไม่ยืนยันตามที่ UI ของหน่วยงานบอก ห้ามขูดเว็บภาพประกอบหรือพร็อกซีเซสชัน
+ที่ไม่มีเอกสาร
 
 ### International / นานาชาติ
 
@@ -131,6 +148,8 @@ Air4Thai, TMD observations        soil API     (§4.3) from *your*    TMD NWP
                                   cascade lag  (§4.2) using          NOAA ONI (seasonal)
                                   GloFAS as modelled flow
                                   + your graph of reaches
+GISTDA Disaster Platform tiles    satellite flood/fire/drought       badge: auto-flood not yet verified
+(WMS/WMTS/TMS — credit GISTDA)    (space-based, not a river gauge)
 ```
 
 **Watch score (heuristic, not a forecast):**
