@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 Dr Non Arkaraprasertkul
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 <p align="center">
   <img src="docs/hero-banner.png" alt="FloodDash Blueprint hero: a bilingual flood-watch desk above a flooded Thai city — measured readings and modelled outlooks kept visibly apart" width="100%">
 </p>
@@ -14,6 +19,27 @@
   Fork the method, not the secrets. Reconstruct from this repo — not from the running building.
 </p>
 
+<p align="center">
+  <a href="LICENSE"><img alt="License: CC BY 4.0" src="https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg"></a>
+  <a href="https://spdx.org/licenses/CC-BY-4.0.html"><img alt="SPDX: CC-BY-4.0" src="https://img.shields.io/badge/SPDX-CC--BY--4.0-4285b4.svg"></a>
+  <a href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Attribution 4.0" src="https://licensebuttons.net/l/by/4.0/80x15.png"></a>
+</p>
+
+---
+
+## After you clone / หลัง clone
+
+**Read [`START-HERE.md`](START-HERE.md) first.** It is the briefing for a professional who just cloned this repo: what arrived, what did not, the reading order, and the licence.
+
+```bash
+git clone https://github.com/Nonarkara/FloodDash-Blueprint.git
+cd FloodDash-Blueprint
+```
+
+Then open `START-HERE.md`. Do not look for `src/` — there isn't one. This clone is documents. The private twin stays private.
+
+**TH.** หลัง clone ให้อ่าน [`START-HERE.md`](START-HERE.md) ก่อน แล้วค่อยเข้า `docs/` อย่าหาโฟลเดอร์ซอร์ส — ไม่มี พิมพ์เขียว ≠ ระบบที่รันอยู่
+
 ---
 
 ## What this is / นี่คืออะไร
@@ -22,12 +48,21 @@
 
 **EN.** This repository is the **public blueprint** of a flood-watch system built after the Hat Yai floods of late 2025 — architecture, formulas, open data sources, a bilingual design language, and a phased build-your-own roadmap. **There is no production source here.** The private twin is **FloodDash**. The site [flood.nonarkara.org](https://flood.nonarkara.org) is an *illustration* of where this method can land, not a source tree, and not an invitation to scrape or reverse-engineer the running building.
 
+### What you get / สิ่งที่ได้ · What you don't / สิ่งที่ไม่ได้
+
 | | Public blueprint / พิมพ์เขียวสาธารณะ | Private twin / คู่แฝดส่วนตัว |
 |---|---|---|
 | Name | **FloodDash-Blueprint** (this repo) | **FloodDash** |
-| What you get | Ideas, formulas, catalogs, roadmap | The running implementation |
-| Licence | [CC BY 4.0](LICENSE) on these documents | Separately © — not distributed here |
-| How to rebuild | From the files in `docs/` | You don't. Fork the *method*. |
+| What you get | Ideas, formulas, catalogs, bilingual design, phased roadmap | The running implementation — **not in this clone** |
+| Licence | **[CC BY 4.0](LICENSE)** · `SPDX-License-Identifier: CC-BY-4.0` | Separately © — not distributed here |
+| How to rebuild | From `docs/` after [`START-HERE.md`](START-HERE.md) | You don't. Fork the *method*. |
+
+**You get / ได้.** Architecture, science, an open-data catalog, a design language, production lessons, and a compute kit with **public URLs and env names — never values**.
+
+**You do not get / ไม่ได้.** Production source, keys, tokens, machine configs, a claim that this blueprint *is* FloodDash, permission to republish the private twin as “open FloodDash,” or an official warning product.
+
+**TH.** ที่นี่แจกวิธี ไม่แจกอาคาร ไม่แจกความลับ
+**EN.** This repo hands you the method. Not the building. Not the secrets.
 
 Studio tenets this repo is written to keep:
 
@@ -182,6 +217,7 @@ The reference pattern's alerts are **on-screen**. Pushing warnings onto phones i
 
 | # | File | What to take from it / สิ่งที่ควรได้จากไฟล์ |
 |---|---|---|
+| 0 | [`START-HERE.md`](START-HERE.md) | Scope for a stranger who just cloned: blueprint ≠ source, licence, first files to open |
 | 1 | [`docs/01-why-and-what.md`](docs/01-why-and-what.md) | The gap is integration, not sensors. Three rules: one machine, real data or nothing, every number explainable |
 | 2 | [`docs/02-architecture.md`](docs/02-architecture.md) | The five-module shape: scheduler, adapters, single-file DB, in-process event bus, bilingual UI |
 | 3 | [`docs/03-data-sources.md`](docs/03-data-sources.md) | The free catalog (Thai + international), cadences, and field-tested gotchas |
@@ -192,7 +228,7 @@ The reference pattern's alerts are **on-screen**. Pushing warnings onto phones i
 | 8 | [`docs/08-lessons-from-production.md`](docs/08-lessons-from-production.md) | What broke in weather: tunnel hostnames (`api-` vs `api2-`), backup paths, irreplaceable SQLite, Pages proxy, embeddings, one-Mac ops |
 | 9 | [`docs/09-compute-and-data.md`](docs/09-compute-and-data.md) | Compute kit: sizing, cadence, **public URLs with attribution**, schema concepts, named env vars (no values), blank-Mac checklist |
 
-**After the seven core files:** read **8** before you expose a public URL, and **9** before you size a disk or copy an env name. They are the production lessons and the compute kit. They still contain **no secrets** and **no private source**.
+**After [`START-HERE.md`](START-HERE.md) and the seven core files:** read **8** before you expose a public URL, and **9** before you size a disk or copy an env name. They are the production lessons and the compute kit. They still contain **no secrets** and **no private source**.
 
 Want more depth after that? The **[deep-dive reference](docs/deep-dive/README.md)** is eight original bilingual synthesis documents (Thai flood context, endpoint-level sources, hydrological models, ML, risk-scoring theory, open-source tool registry, alert systems, roadmap economics). It is a cited summary, not a copy of any single source paper.
 
@@ -219,12 +255,7 @@ Two developers, Phases 0–5 in order, is estimated in the roadmap at **roughly 
 4. Only then clone the adapter pattern for the other pipes you need. Then — and only then — put §4.1 on a map.
 5. Env **names** (never values) and a blank-Mac order of operations: [`docs/09-compute-and-data.md`](docs/09-compute-and-data.md) §9.7–9.8.
 
-### What you will not find here / สิ่งที่จะไม่พบที่นี่
-
-- Production source, keys, tokens, or machine configs
-- A claim that this blueprint *is* FloodDash
-- Permission to republish the private twin as “open FloodDash”
-- An official warning product
+The “what you do not get” list is at the top of this README and in [`START-HERE.md`](START-HERE.md). If you are still hunting for `src/`, stop and reread those.
 
 ---
 
@@ -242,9 +273,22 @@ Reconstruct from `docs/`. Compute from the public agency URLs in [`docs/09-compu
 
 ## License / สัญญาอนุญาต
 
-The **ideas, prose, formulas, and diagrams** in this repository are licensed under **[CC BY 4.0](LICENSE)** — reuse, adapt, translate, and build on them freely, with attribution.
+<p>
+  <a href="LICENSE"><img alt="License: CC BY 4.0" src="https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg"></a>
+  <a href="https://spdx.org/licenses/CC-BY-4.0.html"><img alt="SPDX: CC-BY-4.0" src="https://img.shields.io/badge/SPDX-CC--BY--4.0-4285b4.svg"></a>
+</p>
 
-This licence covers this blueprint's *documents*. It says nothing about, and grants no rights to, the private reference implementation **FloodDash**, which is separately © Dr Non Arkaraprasertkul, produced under depa and the Smart City Thailand Office, and not distributed here.
+`SPDX-License-Identifier: CC-BY-4.0`
+
+**EN.** The ideas, prose, formulas, diagrams, and other documents in this repository are licensed under **[Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)** — reuse, adapt, translate, and build on them freely, including commercially, with attribution. The file GitHub and other scanners should detect is the root [`LICENSE`](LICENSE): the official CC BY 4.0 legal code.
+
+**TH.** แนวคิด ร้อยแก้ว สูตร แผนภาพ และเอกสารใน repository นี้ใช้ **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)** — ใช้ ดัดแปลง แปล และต่อยอดได้ รวมถึงเชิงพาณิชย์ โดยให้เครดิต ไฟล์ที่ GitHub และเครื่องสแกนอื่นควรตรวจพบคือ [`LICENSE`](LICENSE) ซึ่งเป็นข้อความกฎหมายทางการของ CC BY 4.0
+
+**Attribution / การให้เครดิต.** Credit Dr Non Arkaraprasertkul (ดร.นน อัครประเสริฐกุล) and the FloodDash Blueprint project, link this repository and [the licence](LICENSE), and indicate if changes were made.
+
+Suggested credit line: *FloodDash Blueprint by Dr Non Arkaraprasertkul, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). https://github.com/Nonarkara/FloodDash-Blueprint*
+
+**Scope / ขอบเขต.** This licence covers this blueprint's *documents*. It says nothing about, and grants no rights to, the private reference implementation **FloodDash**, which is separately © Dr Non Arkaraprasertkul, produced under depa and the Smart City Thailand Office, and not distributed here. This is a documents-only public method, not a software dump.
 
 Hero illustration: `docs/hero-banner.png` (HUD numbers on the artwork are illustrative, not live telemetry). An earlier studio still lives at `assets/cover.png`.
 

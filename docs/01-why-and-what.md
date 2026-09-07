@@ -1,6 +1,6 @@
 # 1. Why this exists, and what it is / ที่มาและคืออะไร
 
-[← README](../README.md) · [Next: Architecture →](02-architecture.md)
+[← START HERE](../START-HERE.md) · [README](../README.md) · [Next: Architecture →](02-architecture.md)
 
 ---
 
@@ -105,4 +105,4 @@ Everything past that is choices, not obstacles.
 
 ---
 
-[← README](../README.md) · [Next: Architecture →](02-architecture.md)
+[← START HERE](../START-HERE.md) · [README](../README.md) · [Next: Architecture →](02-architecture.md)
