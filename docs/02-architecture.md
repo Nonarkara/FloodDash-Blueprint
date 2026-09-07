@@ -182,6 +182,12 @@ number itself), and design the UI so that if the local model is offline,
 the chat panel falls back to a plain structured summary of the same data —
 never a blank or broken feature.
 
+How this process gets a public HTTPS URL without opening a port — CDN
+static UI, catch-all `/api/*` proxy, named tunnel, one Mac — is an
+operations lesson, not a module: see
+[`docs/08-lessons-from-production.md`](08-lessons-from-production.md)
+and the checklist in [`docs/09-compute-and-data.md`](09-compute-and-data.md).
+
 **TH.** ทำหน้าบ้านให้ธรรมดาและไม่พึ่งพา dependency เท่าที่ทีมสบายใจ หน้าบ้าน
 แบบ vanilla JS ไม่มีขั้นตอน build เสิร์ฟจากโปรเซสเดียวกับ API แปลว่าไม่มีอะไร
 ต้อง compile ไม่มีอะไรพังระหว่างเวอร์ชัน Node และไม่มีอะไรต้องดีบั๊กนอกจากโค้ด
