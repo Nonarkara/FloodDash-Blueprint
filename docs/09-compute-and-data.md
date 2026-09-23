@@ -1,6 +1,6 @@
 # 9. Compute kit and data / ชุดคำนวณและข้อมูล
 
-[← Lessons from production](08-lessons-from-production.md) · [Back to README](../README.md)
+[← Lessons from production](08-lessons-from-production.md) · [Next: Probability → decision →](10-from-probability-to-decision.md) · [Back to README](../README.md)
 
 ---
 
@@ -383,4 +383,4 @@ CDN for this repo, and not the private FloodDash tree. Reconstruct from
 
 ---
 
-[← Lessons from production](08-lessons-from-production.md) · [Back to README](../README.md)
+[← Lessons from production](08-lessons-from-production.md) · [Next: Probability → decision →](10-from-probability-to-decision.md) · [Back to README](../README.md)
