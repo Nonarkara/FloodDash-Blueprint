@@ -227,7 +227,7 @@ The reference pattern's alerts are **on-screen**. Pushing warnings onto phones i
 | 7 | [`docs/07-honest-limitations.md`](docs/07-honest-limitations.md) | What this pattern cannot do, and the ethical floor |
 | 8 | [`docs/08-lessons-from-production.md`](docs/08-lessons-from-production.md) | What broke in weather: tunnel hostnames (`api-` vs `api2-`), backup paths, irreplaceable SQLite, Pages proxy, embeddings, one-Mac ops |
 | 9 | [`docs/09-compute-and-data.md`](docs/09-compute-and-data.md) | Compute kit: sizing, cadence, **public URLs with attribution**, schema concepts, named env vars (no values), blank-Mac checklist |
-| 10 | [`docs/10-from-probability-to-decision.md`](docs/10-from-probability-to-decision.md) | Probability → decision: cost–loss rule per action (prepare / move dependents / evacuate), footprint q, relative economic value, pitfalls |
+| 10 | [`docs/10-from-probability-to-decision.md`](docs/10-from-probability-to-decision.md) | Water budget (ground/dams/river headroom) → probability → decision: cost–loss rule per action (prepare / move dependents / evacuate), footprint q, relative economic value, pitfalls |
 
 **After [`START-HERE.md`](START-HERE.md) and the seven core files:** read **8** before you expose a public URL, and **9** before you size a disk or copy an env name. They are the production lessons and the compute kit. They still contain **no secrets** and **no private source**.
 

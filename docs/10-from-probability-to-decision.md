@@ -22,6 +22,33 @@ that decision honestly.
 บทนี้คือชั้นที่ขาด: กฎบนไวท์บอร์ดที่แปลงความน่าจะเป็นเป็นการตัดสินใจ
 **รายการกระทำ** พร้อมต้นทุน และวิธีให้คะแนนการตัดสินใจนั้นอย่างซื่อตรง
 
+## 10.0 Before odds: the water budget / ก่อนโอกาส: งบน้ำ
+
+A decision needs a *reason* a person can check, not just a number. For each
+area, compare the water arriving with what three containers can still hold.
+Show each container separately and never blend them into one score.
+
+| Container | Capacity | Fill | Headroom |
+|---|---|---|---|
+| Ground | rain that makes 25 mm of runoff: SCS-CN, with S = 25400/CN − 254, Ia = 0.2S, Q = (P − Ia)²/(P + 0.8S), CN adjusted for wetness | (rain 24 h + forecast 48 h) ÷ capacity | capacity − rain already down |
+| Dams | Σ max storage | Σ storage ÷ Σ capacity | million m³ free; days-to-full from dS/dt = I − O |
+| River | bankfull at each gauge | highest % bankfull | smallest freeboard |
+
+- **Show a clock only when it is honest.** Hours-to-full for the ground is
+  shown only when the forecast exceeds the headroom, and only as "if it falls
+  evenly". It is never shown as "0 h" once the ground is already past the
+  line.
+- **Tell people what a dam cannot do.** A dam catches only the water from
+  above it.
+- **A missing container is "no data", never "empty".**
+- **Name the limiting container**, the fullest one, in a sentence: "the
+  ground is what runs out first".
+
+On screen, the order is **answer → why → evidence**:
+1. the break-even ladder (below);
+2. the water budget;
+3. the raw gauges.
+
 ## 10.1 Prerequisite: a probability that has earned the name / เงื่อนไขก่อน
 
 A score from 0 to 100 is not a probability. Before this chapter applies you
