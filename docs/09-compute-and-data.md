@@ -1,6 +1,6 @@
 # 9. Compute kit and data / ชุดคำนวณและข้อมูล
 
-[← Lessons from production](08-lessons-from-production.md) · [Back to README](../README.md)
+[← Lessons from production](08-lessons-from-production.md) · [Next: Civic jobs and trust →](10-civic-jobs-and-trust.md)
 
 ---
 
@@ -381,6 +381,14 @@ CDN for this repo, and not the private FloodDash tree. Reconstruct from
 การสร้างใหม่ *หน้าตาเป็นอย่างไรได้* ไม่ใช่แหล่งข้อมูล ไม่ใช่ CDN ของ repo นี้
 และไม่ใช่ต้นไม้ FloodDash ส่วนตัว สร้างจาก `docs/` คำนวณจาก URL สาธารณะในข้อ 9.3
 
+**EN.** Before a link people will forward, read [§8.9](08-lessons-from-production.md)
+and [civic jobs](10-civic-jobs-and-trust.md). The first hour after clone
+is [doc 12](12-first-hour-fork.md).
+
+**TH.** ก่อนลิงก์ที่คนจะส่งต่อ ให้อ่าน[หัวข้อ 8.9](08-lessons-from-production.md)
+และ[งานที่พลเมืองต้องการ](10-civic-jobs-and-trust.md) ชั่วโมงแรกหลัง clone
+อยู่ที่[เอกสาร 12](12-first-hour-fork.md)
+
 ---
 
-[← Lessons from production](08-lessons-from-production.md) · [Back to README](../README.md)
+[← Lessons from production](08-lessons-from-production.md) · [Next: Civic jobs and trust →](10-civic-jobs-and-trust.md)

@@ -4,9 +4,10 @@
 
 ---
 
-**EN.** Everything in `docs/01`–`docs/09` (the main blueprint, including
-[production lessons](../08-lessons-from-production.md) and the
-[compute kit](../09-compute-and-data.md)) is enough to start building.
+**EN.** Everything in `docs/01`–`docs/12` (the main blueprint, including
+[production lessons](../08-lessons-from-production.md), the
+[compute kit](../09-compute-and-data.md), and the civic layer in
+[docs 10–12](../10-civic-jobs-and-trust.md)) is enough to start building.
 This folder goes further: it is an **original, bilingual
 synthesis of a much larger body of research** — hundreds of queries across
 Thai hydrology, global open-source flood-modeling tools, machine-learning
@@ -22,7 +23,8 @@ source document.** Treat every citation as a starting point for your own
 verification — a challenge like this deserves primary sources, not
 secondhand certainty.
 
-**TH.** เอกสาร `docs/01`–`docs/09` (พิมพ์เขียวหลัก รวมบทเรียนจากระบบจริงและชุดคำนวณ)
+**TH.** เอกสาร `docs/01`–`docs/12` (พิมพ์เขียวหลัก รวมบทเรียนจากระบบจริง ชุดคำนวณ
+และชั้นพลเมืองใน[เอกสาร 10–12](../10-civic-jobs-and-trust.md))
 เพียงพอสำหรับเริ่มสร้างแล้ว โฟลเดอร์นี้ไปไกลกว่านั้น: เป็น **การสังเคราะห์ต้นฉบับสองภาษาจากงานวิจัย
 ชุดใหญ่กว่ามาก** — คำค้นหลายร้อยครั้งครอบคลุมอุทกวิทยาไทย เครื่องมือแบบจำลอง
 น้ำท่วมโอเพนซอร์สระดับโลก สถาปัตยกรรมแมชชีนเลิร์นนิงที่ตรวจสอบกับลุ่มน้ำไทย

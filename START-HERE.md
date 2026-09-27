@@ -13,6 +13,12 @@ There is no `src/`. If you came here looking for production code, keys, or a sho
 
 ไม่มี `src/` ถ้ามาหาโค้ดที่ใช้งานจริง คีย์ หรือทางลัดข้ามการสร้างท่อข้อมูลเอง — นี่ไม่ใช่ตึกนั้น สร้างใหม่จาก `docs/`
 
+### What's new for forkers (Sep 2026) / มีอะไรใหม่สำหรับผู้ที่จะ fork (ก.ย. 2569)
+
+**EN.** Three additions for people who will use the method with neighbours during flood season: [civic jobs and trust](docs/10-civic-jobs-and-trust.md), [citizen signals](docs/11-citizen-signals.md), and the [first hour after clone](docs/12-first-hour-fork.md). Share-surge ops notes are in [§8.9](docs/08-lessons-from-production.md#89-september-2026). Still no FloodDash source.
+
+**TH.** เพิ่มสามชิ้นสำหรับคนที่เอาวิธีไปใช้กับเพื่อนบ้านในฤดูน้ำท่วม: [งานที่พลเมืองต้องการและความไว้ใจ](docs/10-civic-jobs-and-trust.md), [สัญญาณจากประชาชน](docs/11-citizen-signals.md), และ [ชั่วโมงแรกหลัง clone](docs/12-first-hour-fork.md) บทเรียนช่วงที่มีคนส่งต่อลิงก์จำนวนมากอยู่ใน [หัวข้อ 8.9](docs/08-lessons-from-production.md#89-september-2026) ยังไม่มีซอร์ส FloodDash
+
 ---
 
 ## What you got / สิ่งที่ได้มา
@@ -24,6 +30,7 @@ There is no `src/`. If you came here looking for production code, keys, or a sho
 | Formulas you can write on a whiteboard | The private twin **FloodDash** |
 | A bilingual TH/EN design language | Permission to scrape [flood.nonarkara.org](https://flood.nonarkara.org) |
 | A Phase 0–5 roadmap | An official warning product (that stays with DDPM / TMD / ONWR) |
+| Civic jobs, citizen-signal rules, and a first-hour checklist | FloodDash automation, a paste-pack that fills itself, or invented water depths |
 | **CC BY 4.0** on these documents — [`LICENSE`](LICENSE) | Any licence on the running implementation |
 
 **TH.** พิมพ์เขียว ≠ ซอร์สโค้ด · คู่แฝดส่วนตัวชื่อ FloodDash ไม่ได้อยู่ใน repository นี้
@@ -37,6 +44,7 @@ There is no `src/`. If you came here looking for production code, keys, or a sho
 2. [`README.md`](README.md) — ethical use first, then the architecture sketch.
 3. [`docs/01-why-and-what.md`](docs/01-why-and-what.md) → [`docs/02-architecture.md`](docs/02-architecture.md) → [`docs/03-data-sources.md`](docs/03-data-sources.md).
 4. Only then: science, design language, roadmap, honest limitations, production lessons, compute kit.
+5. Before you answer a person or send a link: [civic jobs and trust](docs/10-civic-jobs-and-trust.md), [citizen signals](docs/11-citizen-signals.md), and the [first hour after clone](docs/12-first-hour-fork.md).
 
 Do not open DevTools on the live site looking for code. Do not point adapters at the illustration. The method is in this clone.
 
@@ -51,6 +59,10 @@ Full reading and build tables live in the [README](README.md#build-your-own-from
 Read **Ethical use** in the README, then [`docs/01-why-and-what.md`](docs/01-why-and-what.md) and [`docs/07-honest-limitations.md`](docs/07-honest-limitations.md). That is enough to know what this is, what it is not, and what you must not do when the work sits next to people's safety.
 
 พอที่จะรู้ว่านี่คืออะไร ไม่ใช่อะไร และอะไรที่ห้ามทำเมื่องานอยู่ใกล้ความปลอดภัยของคน
+
+If the ten minutes are because someone is about to receive a message, add [doc 10](docs/10-civic-jobs-and-trust.md) and [doc 12](docs/12-first-hour-fork.md).
+
+ถ้าสิบนาทีนี้เป็นเพราะมีคนกำลังจะได้รับข้อความ ให้เพิ่ม[เอกสาร 10](docs/10-civic-jobs-and-trust.md) และ[เอกสาร 12](docs/12-first-hour-fork.md)
 
 ---
 

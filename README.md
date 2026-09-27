@@ -40,6 +40,12 @@ Then open `START-HERE.md`. Do not look for `src/` — there isn't one. This clon
 
 **TH.** หลัง clone ให้อ่าน [`START-HERE.md`](START-HERE.md) ก่อน แล้วค่อยเข้า `docs/` อย่าหาโฟลเดอร์ซอร์ส — ไม่มี พิมพ์เขียว ≠ ระบบที่รันอยู่
 
+### What's new for forkers (Sep 2026) / มีอะไรใหม่สำหรับผู้ที่จะ fork (ก.ย. 2569)
+
+**TH.** ฤดูน้ำท่วม 2569 เพิ่มสามชิ้นสำหรับคนที่เอาวิธีไปใช้กับคนจริง ไม่ใช่แค่กับท่อข้อมูล: [งานที่พลเมืองต้องการและความไว้ใจ](docs/10-civic-jobs-and-trust.md), [สัญญาณจากประชาชน](docs/11-citizen-signals.md), และ [ชั่วโมงแรกหลัง clone](docs/12-first-hour-fork.md) บทเรียนปฏิบัติการจากช่วงที่มีคนส่งต่อลิงก์จำนวนมากอยู่ใน [หัวข้อ 8.9](docs/08-lessons-from-production.md#89-september-2026) ยังไม่มีซอร์ส FloodDash อยู่ที่นี่
+
+**EN.** For the 2026 flood season, three additions for people who will use the method with real neighbours, not only with pipes: [civic jobs and trust](docs/10-civic-jobs-and-trust.md), [citizen signals](docs/11-citizen-signals.md), and the [first hour after clone](docs/12-first-hour-fork.md). Ops lessons from a share surge are in [§8.9](docs/08-lessons-from-production.md#89-september-2026). There is still no FloodDash source here.
+
 ---
 
 ## What this is / นี่คืออะไร
@@ -225,10 +231,13 @@ The reference pattern's alerts are **on-screen**. Pushing warnings onto phones i
 | 5 | [`docs/05-design-language.md`](docs/05-design-language.md) | Permanent TH+EN signage vs toggle-driven content; colour; fixed viewport |
 | 6 | [`docs/06-build-your-own-roadmap.md`](docs/06-build-your-own-roadmap.md) | Phases 0–5, stack-agnostic, with effort notes |
 | 7 | [`docs/07-honest-limitations.md`](docs/07-honest-limitations.md) | What this pattern cannot do, and the ethical floor |
-| 8 | [`docs/08-lessons-from-production.md`](docs/08-lessons-from-production.md) | What broke in weather: tunnel hostnames (`api-` vs `api2-`), backup paths, irreplaceable SQLite, Pages proxy, embeddings, one-Mac ops |
+| 8 | [`docs/08-lessons-from-production.md`](docs/08-lessons-from-production.md) | What broke in weather: tunnel hostnames (`api-` vs `api2-`), backup paths, irreplaceable SQLite, Pages proxy, embeddings, one-Mac ops — plus the Sep 2026 share-surge note in §8.9 |
 | 9 | [`docs/09-compute-and-data.md`](docs/09-compute-and-data.md) | Compute kit: sizing, cadence, **public URLs with attribution**, schema concepts, named env vars (no values), blank-Mac checklist |
+| 10 | [`docs/10-civic-jobs-and-trust.md`](docs/10-civic-jobs-and-trust.md) | Civic jobs: answer the place first, rain-stop honesty, score ≠ evacuate, suburb dignity, Line-forwardable prose, soft-cite, map-believer trust, muni paste-pack template |
+| 11 | [`docs/11-citizen-signals.md`](docs/11-citizen-signals.md) | Citizen tips as a signal: stated centimetres only, a disagreement badge, Path A / Path B as editorial habits, consent and expiry |
+| 12 | [`docs/12-first-hour-fork.md`](docs/12-first-hour-fork.md) | First hour after clone: ethics, one public feed, measured vs modelled labels, where the watch-score disclaimer sits, EO companion toolkit |
 
-**After [`START-HERE.md`](START-HERE.md) and the seven core files:** read **8** before you expose a public URL, and **9** before you size a disk or copy an env name. They are the production lessons and the compute kit. They still contain **no secrets** and **no private source**.
+**After [`START-HERE.md`](START-HERE.md) and the seven core files:** read **8** before you expose a public URL (reread [§8.9](docs/08-lessons-from-production.md#89-september-2026) before a link people will forward), and **9** before you size a disk or copy an env name. Read **10–12** before you answer a person or put a watch score on a screen they will share. They still contain **no secrets** and **no private source**.
 
 Want more depth after that? The **[deep-dive reference](docs/deep-dive/README.md)** is eight original bilingual synthesis documents (Thai flood context, endpoint-level sources, hydrological models, ML, risk-scoring theory, open-source tool registry, alert systems, roadmap economics). It is a cited summary, not a copy of any single source paper.
 
@@ -297,3 +306,9 @@ Hero illustration: `docs/hero-banner.png` (HUD numbers on the artwork are illust
 ## Built by / ผู้จัดทำ
 
 **Dr Non Arkaraprasertkul (ดร.นน อัครประเสริฐกุล)** — Senior Expert, Smart City Promotion Department, **Digital Economy Promotion Agency (depa)**, Kingdom of Thailand. Produced under the **Smart City Thailand Office** (สำนักงานเมืองอัจฉริยะประเทศไทย). Contact: `non.ar@depa.or.th` · [smartcitythailand.or.th](https://smartcitythailand.or.th)
+
+### Illustration collaborators / ผู้ร่วมภาพประกอบ
+
+**EN.** Public collaborator and sponsor credit for the live illustration at [flood.nonarkara.org](https://flood.nonarkara.org) includes **SLIC** (Smart and Livable City Company), **depa**, **RCAD (รวพ.)**, and **Axiom**. Those names credit support for the running illustration. They are not an author list for this blueprint, not an owner list, and not a claim that any of them issues official flood warnings. This repository remains documents by Dr Non Arkaraprasertkul, [CC BY 4.0](LICENSE). The private twin stays private.
+
+**TH.** เครดิตผู้ร่วมและผู้สนับสนุนสาธารณะของภาพประกอบจริงที่ [flood.nonarkara.org](https://flood.nonarkara.org) รวม **SLIC** (Smart and Livable City Company), **depa**, **RCAD (รวพ.)**, และ **Axiom** ชื่อเหล่านี้ให้เครดิตการสนับสนุนภาพประกอบที่รันอยู่ ไม่ใช่รายชื่อผู้เขียนพิมพ์เขียวนี้ ไม่ใช่รายชื่อเจ้าของ และไม่ใช่การอ้างว่าหน่วยงานใดออกประกาศเตือนภัยน้ำท่วมทางการ repository นี้ยังเป็นเอกสารของ ดร.นน อัครประเสริฐกุล ภายใต้ [CC BY 4.0](LICENSE) คู่แฝดส่วนตัวยังเป็นส่วนตัว

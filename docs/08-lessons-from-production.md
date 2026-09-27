@@ -24,6 +24,12 @@ account id, token ของอุโมงค์, ค่าใน `.env`, ฐา
 ของคนอื่น [flood.nonarkara.org](https://flood.nonarkara.org) เป็นภาพประกอบของวิธี
 ในอากาศจริง อย่าขูดเพื่อเอาซอร์ส
 
+A dated note from the September 2026 share surge is in §8.9. It sits
+on top of §8.1–§8.8. It does not replace them.
+
+บันทึกลงวันที่จากคลื่นการแชร์เดือนกันยายน 2569 อยู่ในหัวข้อ 8.9 มันวางบนหัวข้อ
+8.1–8.8 ไม่ได้แทนที่หัวข้อเหล่านั้น
+
 ---
 
 ## 8.1 The shape that survives a sleeping Mac / รูปทรงที่รอดเมื่อแม็กหลับ
@@ -321,7 +327,175 @@ env, under **your** account.
 ความลับนั้นอยู่บนเครื่อง **ของคุณ** ใน env **ของคุณ** ภายใต้บัญชี **ของคุณ**
 
 Next: what to stand up, which public URLs to fetch, and a blank-machine
-checklist — [Compute kit and data](09-compute-and-data.md).
+checklist — [Compute kit and data](09-compute-and-data.md). The surge
+note below is the part to reread before you publish a link people will
+forward.
+
+ถัดไป: สิ่งที่ต้องตั้ง URL สาธารณะที่จะดึง และรายการตรวจบนเครื่องเปล่า —
+[ชุดคำนวณและข้อมูล](09-compute-and-data.md) บันทึกช่วงคลื่นด้านล่างคือส่วนที่ควรอ่านซ้ำ
+ก่อนเผยแพร่ลิงก์ที่คนจะส่งต่อ
+
+---
+
+<a id="89-september-2026"></a>
+
+## 8.9 September 2026 share surge / คลื่นการแชร์ กันยายน 2569
+
+**EN.** These notes are from operating a one-machine flood watch while
+people forwarded links, in the September 2026 flood season. They are
+generic on purpose. No request rates, no private hostnames beyond the
+illustration pair already named in §8.2, no keys, no supervisor plists,
+no disk paths from anyone’s machine. A forker can rebuild the *shape*
+from this section alone.
+
+**TH.** บันทึกเหล่านี้มาจากการดูแลระบบเฝ้าระวังน้ำท่วมบนเครื่องเดียว ขณะที่คนส่งต่อลิงก์
+ในฤดูน้ำท่วมเดือนกันยายน 2569 ตั้งใจให้เป็นบทเรียนทั่วไป ไม่มีอัตราคำขอ ไม่มีชื่อโฮสต์ส่วนตัว
+นอกจากคู่ตัวอย่างที่ตั้งชื่อไว้แล้วในหัวข้อ 8.2 ไม่มีคีย์ ไม่มีไฟล์ plist ของตัวดูแลโปรเซส
+ไม่มี path ดิสก์จากเครื่องของใคร ผู้ที่ fork สร้าง *รูปทรง* นี้ใหม่ได้จากหัวข้อนี้หัวข้อเดียว
+
+### Cold-start grace for a large database / ให้เวลาอุ่นเครื่องเมื่อฐานข้อมูลใหญ่
+
+**EN.** A large SQLite file is slow at the moment a process first touches
+it: the page cache is cold, WAL recovery may still be walking, and the
+first real query is nothing like the query you timed yesterday afternoon.
+A health check that demands a fast “ready” and then **kills** the process
+turns that slowness into a restart storm. Each death returns the database
+to cold. `KeepAlive` / `Restart=always` (§8.7 above)
+then does exactly what you asked, and the map never warms.
+
+Split the lamp. **Listening** means the process is up and can say
+“starting.” **Warm** means the last ingest is fresh and ordinary queries
+are cheap again. During a grace window you choose — longer than a cold
+open of *your* database file, and stored as an env name on the machine,
+empty in git — a slow start is not a failure. The probe must not kill
+the process inside that window.
+
+While the file is warming, answer with **light** reads: a stored place
+snapshot, the age of the newest row, a plain “warming — last reading at
+…”. Do not let the health probe, or a click, start a full risk
+recompute. The heavy pass belongs on the scheduler, after the process
+is warm.
+
+**TH.** ไฟล์ SQLite ที่ใหญ่จะช้าในจังหวะที่โปรเซสแตะมันครั้งแรก: แคชหน้ายังเย็น
+การกู้ WAL อาจยังเดินอยู่ และคิวรีจริงครั้งแรกไม่เหมือนคิวรีที่คุณจับเวลาเมื่อบ่ายวาน
+การตรวจสุขภาพที่ต้องการ “พร้อม” แบบเร็วแล้ว **ฆ่า** โปรเซส จะเปลี่ยนความช้านั้นเป็นพายุรีสตาร์ต
+ทุกครั้งที่ตาย ฐานข้อมูลกลับไปเย็น `KeepAlive` / `Restart=always`
+(หัวข้อ 8.7 ด้านบน) จะทำตามที่คุณสั่งเป๊ะ และแผนที่จะไม่มีวันอุ่น
+
+แยกดวงไฟ **ฟังอยู่** แปลว่าโปรเซสขึ้นและพูดว่า “กำลังเริ่ม” ได้ **อุ่นแล้ว** แปลว่า
+ingest ล่าสุดใหม่ และคิวรีธรรมดากลับมาเร็วอีกครั้ง ระหว่างหน้าต่างผ่อนเวลาที่คุณเลือก —
+นานกว่าการเปิดไฟล์ฐานข้อมูล *ของคุณ* แบบเย็น และเก็บเป็นชื่อ env บนเครื่อง ว่างใน git —
+การเริ่มช้าไม่ใช่ความล้มเหลว ตัวตรวจต้องไม่ฆ่าโปรเซสภายในหน้าต่างนั้น
+
+ขณะไฟล์ยังอุ่น ให้ตอบด้วยการอ่าน **เบา**: สแนปชอตของที่ที่เก็บไว้แล้ว อายุของแถวล่าสุด
+ข้อความตรง ๆ ว่า “กำลังอุ่นเครื่อง — ค่าล่าสุดเมื่อ …” อย่าให้ตัวตรวจสุขภาพหรือการคลิก
+เริ่มคำนวณความเสี่ยงทั้งก้อน งานหนักเป็นของตัวจัดตาราง หลังจากโปรเซสอุ่นแล้ว
+
+### Light place paths under a share spike / เส้นทางของที่แบบเบา ใต้คลื่นการแชร์
+
+**EN.** A forwarded link is many identical reads of one place. Serve a
+snapshot you already stored: last readings, ages, badges. A query
+parameter in the `?place=` family ([civic jobs](10-civic-jobs-and-trust.md))
+should hit that cheap path.
+
+A cold recompute of the watch score, the cascade, and soil memory on
+the request path will queue the whole spike behind the heaviest thing
+you run. People who believed the map then see a blank, a spinner, or a
+timeout. That costs more trust than omitting a tip
+([§10.7](10-civic-jobs-and-trust.md)). The static UI on the CDN can
+still paint the place and the honest gap while numbers are stale.
+Stale and labelled beats blank.
+
+**TH.** ลิงก์ที่ถูกส่งต่อคือการอ่านที่เดียวกันซ้ำ ๆ จำนวนมาก จงเสิร์ฟสแนปชอตที่คุณเก็บไว้แล้ว:
+ค่าล่าสุด อายุ แบดจ์ พารามิเตอร์ในตระกูล `?place=` ([งานที่พลเมืองต้องการ](10-civic-jobs-and-trust.md))
+ควรชนเส้นทางถูกเส้นนั้น
+
+การคำนวณคะแนนเฝ้าระวัง กราฟต้นน้ำ–ปลายน้ำ และความจำของดินใหม่ทั้งก้อนบนเส้นทางของคำขอ
+จะดึงคลื่นทั้งคลื่นไปรออยู่หลังงานที่หนักที่สุดที่คุณรัน คนที่เชื่อแผนที่จะเห็นความว่าง วงหมุน
+หรือหมดเวลา นั่นแลกความไว้ใจมากกว่าการไม่ใส่ทิป
+([หัวข้อ 10.7](10-civic-jobs-and-trust.md)) UI แบบไฟล์นิ่งบน CDN ยังวาดที่
+และช่องว่างที่ซื่อสัตย์ได้ ขณะที่ตัวเลขเก่า ของเก่าที่มีป้าย ดีกว่าความว่าง
+
+### Media and cache leave the database disk / สื่อและแคชออกจากดิสก์ของฐานข้อมูล
+
+**EN.** Citizen photos, map-tile caches, and HTTP caches grow with
+attention. The SQLite file grows with history, and history cannot be
+rebuilt from the public APIs (§8.4 above).
+Put them on different volumes. `DATA_DIR=` stays the database.
+`MEDIA_DIR=` and `CACHE_DIR=` (names only in git) take everything a
+spike can fill. An image directory that shares the database volume is
+how `ENOSPC` arrives in the middle of the forward you hoped to survive.
+Alert on the data volume at the threshold you already chose. Do not
+wait for the media folder to teach it to you.
+
+**TH.** ภาพจากประชาชน แคชไทล์แผนที่ และแคช HTTP โตตามความสนใจ ไฟล์ SQLite โตตามประวัติ
+และประวัติสร้างใหม่จาก API สาธารณะไม่ได้ (หัวข้อ 8.4 ด้านบน)
+วางคนละโวลุ่ม `DATA_DIR=` ยังเป็นฐานข้อมูล `MEDIA_DIR=` และ `CACHE_DIR=`
+(ใน git มีแต่ชื่อ) รับทุกอย่างที่คลื่นเติมได้ โฟลเดอร์ภาพที่ใช้โวลุ่มเดียวกับฐานข้อมูล
+คือทางที่ `ENOSPC` มาถึงกลางการส่งต่อที่คุณหวังจะรอด เตือนบนโวลุ่มข้อมูลที่เกณฑ์ที่คุณเลือกไว้แล้ว
+อย่ารอให้โฟลเดอร์สื่อเป็นคนสอน
+
+### Keep browser opt-outs on the host that serves the map / คงการปฏิเสธของเบราว์เซอร์ไว้บนโฮสต์ที่เสิร์ฟแผนที่
+
+**EN.** A shared link opens one origin: the host that serves the map.
+That response is where browser opt-outs belong. A `Permissions-Policy`
+that declines camera, microphone, and unsolicited geolocation; a
+referrer policy that does not hand the place query to third parties;
+and a page that still draws the place when the person has blocked
+third-party cookies and refused location. Analytics must not be on the
+critical path. A tracker that a strict browser drops should fail
+quietly, and the place should remain.
+
+Put the same opt-outs on every hostname that can open the map,
+including a deliberate fallback (§ below). A spike mitigation that
+stands up a new host and forgets them, or that puts a challenge, a
+cookie wall, or an account in front of the place, breaks the promise
+in [§10.7](10-civic-jobs-and-trust.md). The aunt’s browser is the
+client that matters. Configure the host she actually hits.
+
+**TH.** ลิงก์ที่แชร์เปิดต้นทางเดียว: โฮสต์ที่เสิร์ฟแผนที่ การตอบนั้นคือที่อยู่ของการปฏิเสธของเบราว์เซอร์
+`Permissions-Policy` ที่ปฏิเสธกล้อง ไมโครโฟน และตำแหน่งที่ไม่ได้ขอ; นโยบาย referrer
+ที่ไม่ส่งคิวรีของที่ให้บุคคลที่สาม; และหน้าที่ยังวาดที่นั้นได้ เมื่อคนบล็อกคุกกี้บุคคลที่สามและปฏิเสธตำแหน่ง
+ระบบวิเคราะห์ต้องไม่อยู่บนเส้นทางวิกฤต ตัวติดตามที่เบราว์เซอร์เข้มงวดทิ้ง ควรล้มอย่างเงียบ
+และที่นั้นควรยังอยู่
+
+วางการปฏิเสธชุดเดียวกันบนทุกชื่อโฮสต์ที่เปิดแผนที่ได้ รวมโฮสต์สำรองที่ตั้งใจ (หัวข้อด้านล่าง)
+การรับมือคลื่นที่ตั้งโฮสต์ใหม่แล้วลืมสิ่งเหล่านี้ หรือวางหน้าท้าทาย กำแพงคุกกี้ หรือบัญชี
+ขวางที่นั้น คือการผิดคำสัญญาใน[หัวข้อ 10.7](10-civic-jobs-and-trust.md) เบราว์เซอร์ของป้าคือไคลเอนต์ที่สำคัญ
+ตั้งค่าโฮสต์ที่เขาเปิดจริง
+
+### Two public API hostnames, on purpose / ชื่อโฮสต์ API สาธารณะสองชื่อ โดยตั้งใจ
+
+**EN.** §8.2 is the accidental pair. A rebuild mints `api-…` beside
+`api2-…`, one of them is a leftover, both lights look green, and the
+browser is calling the name you retired. The illustration of that trap
+is the pair already written there: `api-flood` and `api2-flood`. The
+`2` in that story is not a version.
+
+A resilience pair is the opposite discipline. You *intend* two public
+API hostnames. Both are configured. Both can answer a **light** place
+or snapshot read. One is canonical (`API_ORIGIN=`). The other is an
+explicit fallback (`API_ORIGIN_FALLBACK=`), empty in git, never a second
+hardcoded string you forgot. The UI fails over when the canonical host
+times out. Both carry the warming honesty and the browser opt-outs.
+A fallback that returns a blank map is not resilience.
+
+If you cannot say which name is canonical and which is fallback, you
+still have the §8.2 trap. Do not copy anyone else’s tunnel names. The
+shape above is enough. Your values stay on your machine.
+
+**TH.** หัวข้อ 8.2 คือคู่ที่เกิดโดยไม่ตั้งใจ การสร้างใหม่จะตั้ง `api-…` ข้าง `api2-…`
+ชื่อหนึ่งเป็นของเหลือ ไฟทั้งคู่ดูเขียว และเบราว์เซอร์เรียกชื่อที่คุณเลิกใช้แล้ว ภาพประกอบของกับดักนั้น
+คือคู่ที่เขียนไว้ที่นั่นแล้ว: `api-flood` กับ `api2-flood` เลข `2` ในเรื่องนั้นไม่ใช่เวอร์ชัน
+
+คู่เพื่อความทนทานเป็นวินัยตรงข้าม คุณ *ตั้งใจ* ให้มีชื่อโฮสต์ API สาธารณะสองชื่อ ทั้งคู่ถูกตั้งค่า
+ทั้งคู่ตอบการอ่านของที่หรือสแนปชอต **แบบเบา** ได้ ชื่อหนึ่งเป็น canonical (`API_ORIGIN=`)
+อีกชื่อเป็น fallback ที่ระบุชัด (`API_ORIGIN_FALLBACK=`) ว่างใน git ไม่ใช่สตริงที่สองที่ hardcode
+แล้วลืม UI สลับเมื่อโฮสต์หลักหมดเวลา ทั้งคู่พกความซื่อสัตย์เรื่องการอุ่นเครื่อง และการปฏิเสธของเบราว์เซอร์
+fallback ที่คืนแผนที่ว่างไม่ใช่ความทนทาน
+
+ถ้าคุณบอกไม่ได้ว่าชื่อไหนเป็นหลัก ชื่อไหนเป็นสำรอง คุณยังอยู่ในกับดักของหัวข้อ 8.2
+อย่าคัดลอกชื่ออุโมงค์ของคนอื่น รูปทรงด้านบนเพียงพอ ค่าของคุณอยู่บนเครื่องของคุณ
 
 ---
 
