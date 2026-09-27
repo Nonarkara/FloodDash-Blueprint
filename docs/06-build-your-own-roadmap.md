@@ -170,10 +170,22 @@ and every number on screen will be one your own team can explain.
 ของคุณเองอธิบายได้
 
 When Phase 5 starts to hurt, read **[lessons from production](08-lessons-from-production.md)**
-(tunnel hostnames, backups, irreplaceable SQLite, Pages proxy) and the
+(tunnel hostnames, backups, irreplaceable SQLite, Pages proxy, and the
+September 2026 surge note in §8.9) and the
 **[compute kit](09-compute-and-data.md)** (public URLs, schema, blank-Mac
-checklist). Do not scrape [flood.nonarkara.org](https://flood.nonarkara.org)
+checklist). Before you answer a person, read
+**[civic jobs](10-civic-jobs-and-trust.md)**,
+**[citizen signals](11-citizen-signals.md)**, and the
+**[first hour](12-first-hour-fork.md)**. Do not scrape [flood.nonarkara.org](https://flood.nonarkara.org)
 to skip those files.
+
+เมื่อเฟส 5 เริ่มเจ็บ ให้อ่าน **[บทเรียนจากระบบจริง](08-lessons-from-production.md)**
+(ชื่อโฮสต์อุโมงค์ การสำรอง SQLite ที่สร้างใหม่ไม่ได้ พร็อกซีของ Pages และบันทึกคลื่นเดือนกันยายน 2569 ในหัวข้อ 8.9)
+กับ **[ชุดคำนวณ](09-compute-and-data.md)** ก่อนตอบคน ให้อ่าน
+**[งานที่พลเมืองต้องการ](10-civic-jobs-and-trust.md)**
+**[สัญญาณจากประชาชน](11-citizen-signals.md)** และ
+**[ชั่วโมงแรก](12-first-hour-fork.md)** อย่าขูด [flood.nonarkara.org](https://flood.nonarkara.org)
+เพื่อข้ามไฟล์เหล่านั้น
 
 ---
 
